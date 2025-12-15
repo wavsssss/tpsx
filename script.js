@@ -148,7 +148,7 @@ const membersData = {
     ],
 }
 
-// Member English names mapping - CORRECTED TYPO
+// Member English names mapping
 const memberNames = {
     'seoyeon': 'Yoon Seoyeon',
     'hyerin': 'Jeong Hyerin',
@@ -204,6 +204,62 @@ const memberToSNumber = {
     'jiseoyeon': 'S24'
 };
 
+// Official tripleS COSMO Colors
+const memberColors = {
+    'S1': '#22AEFF',
+    'S2': '#9200FF',
+    'S3': '#FFF800',
+    'S4': '#98F21D',
+    'S5': '#DB0C74',
+    'S6': '#FC83A4',
+    'S7': '#6799A0',
+    'S8': '#FFE3E2',
+    'S9': '#FFC935',
+    'S10': '#FF9AD6',
+    'S11': '#FFDE00',
+    'S12': '#5974FF',
+    'S13': '#FF953F',
+    'S14': '#1222B5',
+    'S15': '#D51313',
+    'S16': '#FE8E76',
+    'S17': '#AC62B7',
+    'S18': '#B7F54C',
+    'S19': '#52D9BB',
+    'S20': '#FF428A',
+    'S21': '#C7A3E0',
+    'S22': '#7BBA8D',
+    'S23': '#CFF3FF',
+    'S24': '#FFAB62',
+};
+
+// Member Photos
+const memberPhotos = {
+    'S1': 'https://i.imgur.com/3p4dAiE.jpeg',
+    'S2': 'https://i.imgur.com/p2Pxyce.jpeg',
+    'S3': 'https://i.imgur.com/Z39BdLy.jpeg',
+    'S4': 'https://i.imgur.com/N91DHgX.jpeg',
+    'S5': 'https://i.imgur.com/6TdVWeF.jpeg',
+    'S6': 'https://i.imgur.com/ZRKGlPE.jpeg',
+    'S7': 'https://i.imgur.com/QSrBAFS.jpeg',
+    'S8': 'https://i.imgur.com/D0hNRRB.jpeg',
+    'S9': 'https://i.imgur.com/obKKMZ6.jpeg',
+    'S10': 'https://i.imgur.com/gj3du8r.jpeg',
+    'S11': 'https://i.imgur.com/Ld3jAhn.jpeg',
+    'S12': 'https://i.imgur.com/Id25FOe.jpeg',
+    'S13': 'https://i.imgur.com/MokxmsD.jpeg',
+    'S14': 'https://i.imgur.com/BiY4l3k.jpeg',
+    'S15': 'https://i.imgur.com/4vLYtlU.jpeg',
+    'S16': 'https://i.imgur.com/ZCDne0M.jpeg',
+    'S17': 'https://i.imgur.com/CuMvQT5.jpeg',
+    'S18': 'https://i.imgur.com/cY7u4PT.jpeg',
+    'S19': 'https://i.imgur.com/3jrRRGF.jpeg',
+    'S20': 'https://i.imgur.com/q4soVNI.jpeg',
+    'S21': 'https://i.imgur.com/XNATAPl.jpeg',
+    'S22': 'https://i.imgur.com/mhoEfSI.jpeg',
+    'S23': 'https://i.imgur.com/eiRObhv.jpeg',
+    'S24': 'https://i.imgur.com/VL2Tsb5.jpeg',
+};
+
 // Load fan sites on fansites.html page
 if (window.location.pathname.includes('fansites.html')) {
     document.addEventListener('DOMContentLoaded', function() {
@@ -214,44 +270,19 @@ if (window.location.pathname.includes('fansites.html')) {
             const memberName = memberNames[member];
             const sNumber = memberToSNumber[member];
             const fansites = membersData[sNumber];
+            const memberColor = memberColors[sNumber];
+            const memberPhoto = memberPhotos[sNumber];
 
             // Update member header
             document.getElementById('memberName').textContent = memberName;
+            document.getElementById('memberNumber').textContent = sNumber;
 
-            // Update member icon with same gradient as index page
+            // Update member icon with photo and colored border
             const memberIcon = document.getElementById('memberIcon');
-            const gradients = {
-                'S1': 'linear-gradient(135deg, #22AEFF, #1C8CD1)',
-                'S2': 'linear-gradient(135deg, #9200FF, #7400CC)',
-                'S3': 'linear-gradient(135deg, #FFF800, #CCC600)',
-                'S4': 'linear-gradient(135deg, #98F21D, #7AC217)',
-                'S5': 'linear-gradient(135deg, #DB0C74, #AF0A5D)',
-                'S6': 'linear-gradient(135deg, #FC83A4, #CA6983)',
-                'S7': 'linear-gradient(135deg, #6799A0, #527A80)',
-                'S8': 'linear-gradient(135deg, #FFE3E2, #CCB6B5)',
-                'S9': 'linear-gradient(135deg, #FFC935, #CCA12A)',
-                'S10': 'linear-gradient(135deg, #FF9AD6, #CC7BAB)',
-                'S11': 'linear-gradient(135deg, #FFDE00, #CCB200)',
-                'S12': 'linear-gradient(135deg, #5974FF, #475DCC)',
-                'S13': 'linear-gradient(135deg, #FF953F, #CC7732)',
-                'S14': 'linear-gradient(135deg, #1222B5, #0E1B91)',
-                'S15': 'linear-gradient(135deg, #D51313, #AA0F0F)',
-                'S16': 'linear-gradient(135deg, #FE8E76, #CB725E)',
-                'S17': 'linear-gradient(135deg, #AC62B7, #8A4E92)',
-                'S18': 'linear-gradient(135deg, #B7F54C, #92C43D)',
-                'S19': 'linear-gradient(135deg, #52D9BB, #42AE96)',
-                'S20': 'linear-gradient(135deg, #FF428A, #CC356E)',
-                'S21': 'linear-gradient(135deg, #C7A3E0, #9F82B3)',
-                'S22': 'linear-gradient(135deg, #7BBA8D, #629571)',
-                'S23': 'linear-gradient(135deg, #CFF3FF, #A6C2CC)',
-                'S24': 'linear-gradient(135deg, #FFAB62, #CC894E)'
-            };
-
-            memberIcon.style.background = gradients[sNumber];
-
-            // Get initials for icon
-            const initials = memberName.split(' ').map(word => word[0]).join('');
-            memberIcon.innerHTML = `<span class="icon-text">${initials}</span>`;
+            memberIcon.style.backgroundImage = `url('${memberPhoto}')`;
+            memberIcon.style.backgroundSize = 'cover';
+            memberIcon.style.backgroundPosition = 'center';
+            memberIcon.style.border = `6px solid ${memberColor}`;
 
             // Display fan sites
             const fansitesList = document.getElementById('fansitesList');
